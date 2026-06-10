@@ -13,7 +13,7 @@
 | # | Repo | Status | Output File | Notes |
 |---|------|--------|-------------|-------|
 | 1 | [finfolio](https://github.com/andredavisme/finfolio) | ✅ Complete | `guide/01-finfolio.md` | Data ownership, single source of truth, intake normalization, dirty-state visibility, round-trip fidelity |
-| 2 | [underdog-war-room](https://github.com/andredavisme/underdog-war-room) | ⬜ Not Started | — | — |
+| 2 | [underdog-war-room](https://github.com/andredavisme/underdog-war-room) | ✅ Complete | `guide/02-underdog-war-room.md` | Competitive intelligence as data, battlecard model, proof over declarations, pilot as proof, objection handling as structured data |
 | 3 | [parts-spec-matcher](https://github.com/andredavisme/parts-spec-matcher) | ⬜ Not Started | — | — |
 | 4 | [tech-debt-explorer](https://github.com/andredavisme/tech-debt-explorer) | ⬜ Not Started | — | — |
 | 5 | [data-solutions-for-me](https://github.com/andredavisme/data-solutions-for-me) | ⬜ Not Started | — | — |
@@ -67,3 +67,4 @@ Paste the following into a new conversation to pick up exactly where you left of
 |------|-----------------|
 | 2026-06-10 | Project initialized. Repo created. Tracking document added. Ready to begin with repo #1: finfolio. |
 | 2026-06-10 | Completed repo #1: finfolio. Wrote `guide/01-finfolio.md` covering data ownership, canonical data structures, typed/enumerated fields, multiple intake paths, dirty-state visibility, round-trip fidelity, graceful degradation, documenting known gaps, and philosophy-matched governance. Next: repo #2 underdog-war-room. |
+| 2026-06-10 | Completed repo #2: underdog-war-room. Wrote `guide/02-underdog-war-room.md` covering competitive intelligence as a data discipline, battlecard model, proof over declarations, reactive vs. structural positioning, pilot as proof, peer competitor taxonomy, objection handling as structured data, speed as data advantage, and segment-first strategy. Next: repo #3 parts-spec-matcher. |
