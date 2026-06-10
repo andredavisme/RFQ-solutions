@@ -14,7 +14,7 @@
 |---|------|--------|-------------|-------|
 | 1 | [finfolio](https://github.com/andredavisme/finfolio) | ✅ Complete | `guide/01-finfolio.md` | Data ownership, single source of truth, intake normalization, dirty-state visibility, round-trip fidelity |
 | 2 | [underdog-war-room](https://github.com/andredavisme/underdog-war-room) | ✅ Complete | `guide/02-underdog-war-room.md` | Competitive intelligence as data, battlecard model, proof over declarations, pilot as proof, objection handling as structured data |
-| 3 | [parts-spec-matcher](https://github.com/andredavisme/parts-spec-matcher) | ⬜ Not Started | — | — |
+| 3 | [parts-spec-matcher](https://github.com/andredavisme/parts-spec-matcher) | ✅ Complete | `guide/03-parts-spec-matcher.md` | RFQ information asymmetry, schema isolation, vendor/distributor distinction, guided spec intake, transparent matching, authorization-driven routing, status lifecycle, role-based access, database integrity |
 | 4 | [tech-debt-explorer](https://github.com/andredavisme/tech-debt-explorer) | ⬜ Not Started | — | — |
 | 5 | [data-solutions-for-me](https://github.com/andredavisme/data-solutions-for-me) | ⬜ Not Started | — | — |
 | 6 | [westbrook-datacenter-informed](https://github.com/andredavisme/westbrook-datacenter-informed) | ⬜ Not Started | — | — |
@@ -66,5 +66,6 @@ Paste the following into a new conversation to pick up exactly where you left of
 | Date | Session Summary |
 |------|-----------------|
 | 2026-06-10 | Project initialized. Repo created. Tracking document added. Ready to begin with repo #1: finfolio. |
-| 2026-06-10 | Completed repo #1: finfolio. Wrote `guide/01-finfolio.md` covering data ownership, canonical data structures, typed/enumerated fields, multiple intake paths, dirty-state visibility, round-trip fidelity, graceful degradation, documenting known gaps, and philosophy-matched governance. Next: repo #2 underdog-war-room. |
-| 2026-06-10 | Completed repo #2: underdog-war-room. Wrote `guide/02-underdog-war-room.md` covering competitive intelligence as a data discipline, battlecard model, proof over declarations, reactive vs. structural positioning, pilot as proof, peer competitor taxonomy, objection handling as structured data, speed as data advantage, and segment-first strategy. Next: repo #3 parts-spec-matcher. |
+| 2026-06-10 | Completed repo #1: finfolio. Wrote `guide/01-finfolio.md` — data ownership, canonical data structures, typed/enumerated fields, multiple intake paths, dirty-state visibility, round-trip fidelity, graceful degradation, documenting known gaps, philosophy-matched governance. |
+| 2026-06-10 | Completed repo #2: underdog-war-room. Wrote `guide/02-underdog-war-room.md` — competitive intelligence as data, battlecard model, proof over declarations, reactive vs. structural positioning, pilot as proof, peer competitor taxonomy, objection handling as structured data, speed as data advantage, segment-first strategy. |
+| 2026-06-10 | Completed repo #3: parts-spec-matcher. Wrote `guide/03-parts-spec-matcher.md` — RFQ information asymmetry, schema isolation, vendor/distributor distinction, guided spec intake, transparent match engine, distributor-neutral routing, explicit status lifecycle, role-based access, database-level integrity, dual-workflow / single data model. Next: repo #4 tech-debt-explorer. |
