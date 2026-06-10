@@ -12,7 +12,7 @@
 
 | # | Repo | Status | Output File | Notes |
 |---|------|--------|-------------|-------|
-| 1 | [finfolio](https://github.com/andredavisme/finfolio) | ⬜ Not Started | — | — |
+| 1 | [finfolio](https://github.com/andredavisme/finfolio) | ✅ Complete | `guide/01-finfolio.md` | Data ownership, single source of truth, intake normalization, dirty-state visibility, round-trip fidelity |
 | 2 | [underdog-war-room](https://github.com/andredavisme/underdog-war-room) | ⬜ Not Started | — | — |
 | 3 | [parts-spec-matcher](https://github.com/andredavisme/parts-spec-matcher) | ⬜ Not Started | — | — |
 | 4 | [tech-debt-explorer](https://github.com/andredavisme/tech-debt-explorer) | ⬜ Not Started | — | — |
@@ -66,3 +66,4 @@ Paste the following into a new conversation to pick up exactly where you left of
 | Date | Session Summary |
 |------|-----------------|
 | 2026-06-10 | Project initialized. Repo created. Tracking document added. Ready to begin with repo #1: finfolio. |
+| 2026-06-10 | Completed repo #1: finfolio. Wrote `guide/01-finfolio.md` covering data ownership, canonical data structures, typed/enumerated fields, multiple intake paths, dirty-state visibility, round-trip fidelity, graceful degradation, documenting known gaps, and philosophy-matched governance. Next: repo #2 underdog-war-room. |
