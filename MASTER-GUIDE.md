@@ -178,6 +178,135 @@ The Data Solutions for Me platform applies the same principle to project communi
 
 ---
 
+## Integrated Example: The Cross-Line-of-Business RFQ Walkthrough
+
+> **What follows is a single scenario traced end-to-end across every handoff in a complete RFQ cycle. Each stage is tagged to the core principle it illustrates. Read it as a diagnostic template: if your business cannot perform every step as described, the gap identifies where your data flow breaks down.**
+
+---
+
+### The Scenario
+
+Meridian Industrial Supply receives an RFQ from a facilities manager at a manufacturing plant. The customer needs a 22 kW variable frequency drive (VFD), three-phase, NEMA 4X enclosure, 480V input — for a washdown environment. They need it delivered within 10 business days, and they are comparing Meridian against two other distributors.
+
+---
+
+### Stage 1 — Customer RFQ Intake
+
+The customer submits through Meridian's structured intake form. The form does not have a free-text specification field. Instead, it presents a product-category selector → voltage selector → enclosure rating selector → power rating field, with units enforced (kW, not HP). The customer selects: VFD → 480V, 3-phase → NEMA 4X → 22 kW.
+
+The form validates that all required fields are populated before submission is accepted. On submit, the system creates an RFQ record with status `received` and timestamps the intake event. The customer's selections are stored as structured field values — not as a description string.
+
+> **🏷 Minimum Viable Complete Record:** The intake form enforces the required fields (voltage, phase, enclosure, power rating, required-by date) before the RFQ record is created. An incomplete submission is rejected at the entry point, not discovered during quoting.
+
+> **🏷 Templates as Data Contracts:** The intake form itself is a data contract — it defines exactly what information the customer must supply, in what format, before the workflow advances. The form template is versioned; the current version requires enclosure rating as a mandatory field after a prior incident where a wrong-environment product was quoted.
+
+> **🏷 Single Source of Truth:** The RFQ record created at intake is the single authoritative record for this request. Sales, operations, procurement, and logistics all read from this record. No one maintains a parallel copy.
+
+---
+
+### Stage 2 — Internal Quote Building
+
+The inside sales team receives an alert that a new RFQ has been assigned to them (status: `received → in review`). They open the canonical RFQ record. All customer-provided fields are visible. The team runs a catalog lookup against the internal product database using the structured fields — not a keyword search.
+
+The catalog returns two matches:
+- **Product A:** An in-stock, authorized-distributor VFD, 22 kW, 480V, NEMA 4X — exact match. Unit price: $2,840. Available: 2 units on hand.
+- **Product B:** A functional equivalent from a different manufacturer, same specs, currently at 14-day lead time from the manufacturer. Unit price: $2,610.
+
+The team selects Product A for the primary quote line. Because Product A covers the full required quantity, no substitution flag is triggered. They enter the price, confirm the delivery timeline (2-day internal processing + standard 5-day freight = 7 business days, within the customer's 10-day window), and set the quote validity date to 14 days out.
+
+The quote record is created with status `quoted`. A snapshot of the quote — product, price, lead time, validity date, spec — is stored as an immutable record at the moment of issue.
+
+> **🏷 Single Source of Truth:** Pricing is pulled from the single authoritative price table, not from a sales rep's memory or a cached spreadsheet. Lead time is pulled from the live inventory record.
+
+> **🏷 Dirty-State Visibility:** The quote carries status `quoted` — not `accepted`, not `confirmed`. Downstream systems and team members can see that this is a pending commitment, not a confirmed order. The inventory on-hand record is flagged as `soft-reserved` (pending customer acceptance) rather than `allocated`, so it remains visible as available if the customer does not accept.
+
+> **🏷 Database as Contract:** The quote snapshot is an immutable record. If the customer returns in 60 days referencing this quote, the team can pull the snapshot and confirm exactly what was issued, what spec was covered, at what price, with what validity — regardless of what has changed in the live price table since.
+
+---
+
+### Stage 3 — Vendor Data Translation
+
+The team checks whether the 2-unit on-hand quantity is sufficient, or whether a purchase order needs to be triggered to replenish. The customer has ordered 1 unit, so on-hand stock is adequate. No vendor PO is needed for this order.
+
+However, because the soft reservation reduces available stock to 1 unit, the system flags a reorder trigger. The procurement team opens a PO to the authorized distributor for 3 additional units. The distributor's data feed uses their own part number scheme and quotes lead time as "5–7 business days from PO acknowledgment."
+
+The translation layer maps:
+- Distributor part number `VFD-22K-4X-480-3PH` → internal catalog ID `CAT-VFD-0441`
+- Lead time format: "5–7 business days from PO acknowledgment" → internal field `lead_time_days_min: 5`, `lead_time_days_max: 7`, `lead_time_basis: po_acknowledgment` (not from ship date, not from stock release)
+- Unit of measure: "each" → matches internal UOM, no conversion required
+- Price: distributor quote in USD, net 30 → stored as `unit_cost`, `payment_terms: net_30`, `price_basis: distributor_formal_quotation`
+
+The PO is issued. When the distributor acknowledges, the lead time status on the replenishment record moves from `estimated` to `confirmed`.
+
+> **🏷 Database as Contract:** The translation layer enforces that no distributor data enters the canonical system without mapping. A distributor who sends data in a new format triggers a mapping review before automated processing resumes.
+
+> **🏷 Dirty-State Visibility:** The replenishment record carries `lead_time_confirmed: false` until the distributor's acknowledgment is received. Any report showing expected inventory arrival dates clearly flags unconfirmed lead times as estimated, not committed.
+
+> **🏷 Templates as Data Contracts:** The purchase order template sent to the distributor defines the required response fields: acknowledgment date, confirmed ship date, confirmed unit price, and any substitution disclosure. A distributor response that omits the confirmed ship date is flagged as incomplete and routed to procurement for follow-up — not silently processed as if the date were confirmed.
+
+---
+
+### Stage 4 — Logistics Coordination
+
+The customer's order is accepted (status: `quoted → accepted → ordered`). The operations team triggers the fulfillment workflow. The logistics coordinator receives a fulfillment task with the canonical order record: customer name, ship-to address (validated at intake against a standardized address format), product, quantity, required-by date, and the agreed delivery window (7 business days).
+
+The coordinator selects a carrier based on the delivery window and the ship-to region. The carrier booking is entered into the system using the validated ship-to address — not retyped from memory or a separate document. The tracking number returned by the carrier is written back to the canonical order record.
+
+The order status updates: `ordered → in process → shipped`. Each transition is timestamped and audit-logged with the responsible party.
+
+The logistics coordinator does not see the internal cost or margin data on the order record. Their role-based view shows: product, quantity, ship-to, required-by date, carrier, and tracking. That is the information required to coordinate delivery — no more.
+
+> **🏷 Single Source of Truth:** The ship-to address the carrier receives is the same address that was validated at customer intake. There is no re-entry, no transcription, no second copy. If the address is wrong, it is wrong in one place and corrected in one place.
+
+> **🏷 Dirty-State Visibility:** Until the carrier confirms pickup, the order carries status `in process` — not `shipped`. The customer-facing status portal reflects this. When the carrier confirms, the status transitions to `shipped` and the tracking number becomes visible to the customer.
+
+> **🏷 Database as Contract:** The logistics handoff is a defined data contract: the fulfillment system passes the order record to the carrier booking system in a defined format. The carrier's response (tracking number, estimated delivery date) is written back to the canonical record in a defined format. No freeform notes, no verbal handoffs, no separate spreadsheet.
+
+---
+
+### Stage 5 — Customer-Facing Deliverable
+
+When the shipment is confirmed, the customer receives an automated notification containing:
+- Order number (linked to their original RFQ)
+- Product description and quantity shipped
+- Carrier name and tracking number
+- Estimated delivery date (specific date, not "within a few days")
+- Contact for delivery issues (a named role, not a generic inbox)
+
+The notification is generated from the canonical order record — not composed manually. Its format follows the standard shipment confirmation template, which defines all required fields. A notification missing any required field cannot be sent; the system flags it for manual review.
+
+When delivery is confirmed (carrier delivers, status: `shipped → delivered`), the customer receives a delivery confirmation with a PDF snapshot of the complete order record: what was quoted, what was ordered, what was shipped, what was delivered, and when. This snapshot is stored in the canonical record as the permanent delivery proof.
+
+> **🏷 Templates as Data Contracts:** The shipment notification and delivery confirmation are both templates with required fields. They are data contracts between Meridian and the customer — not ad hoc communications. Every customer receives the same structure, which means every customer can rely on the same fields being present.
+
+> **🏷 Single Source of Truth:** The customer's delivery confirmation is generated from the same canonical record that sales, operations, and logistics read. There is no "customer version" of the record that could differ from the internal version.
+
+> **🏷 Minimum Viable Complete Record:** The delivery confirmation PDF contains the minimum complete record for this transaction: quote snapshot, order confirmation, shipment record, and delivery confirmation. It is self-contained and usable as audit evidence without network access.
+
+> **🏷 Dirty-State Visibility:** The customer-facing status portal shows `delivered` only after the carrier confirms delivery — not after the shipment is dispatched. The distinction between `shipped` and `delivered` is meaningful to the customer and is preserved in the record.
+
+> **🏷 Database as Contract:** The delivery confirmation snapshot is immutable. If the customer raises a dispute — wrong product, wrong quantity, missed delivery window — the snapshot is the ground truth. It reflects what was committed and what was delivered, not the current state of any live record that may have changed since.
+
+---
+
+### What This Example Demonstrates
+
+The five principles — Single Source of Truth, Dirty-State Visibility, Minimum Viable Complete Record, Database as Contract, and Templates as Data Contracts — are not abstract architecture concerns. They are operational disciplines that prevent specific, costly failures:
+
+| Failure Prevented | Principle That Prevents It |
+|---|---|
+| Customer receives wrong product because spec was misread in transcription | Minimum Viable Complete Record (structured intake), Single Source of Truth (no re-entry) |
+| Quote built on stale inventory data, product unavailable at fulfillment | Dirty-State Visibility (soft-reserve, not hard-allocate) |
+| Vendor lead time treated as confirmed when it was an estimate | Dirty-State Visibility (confirmed vs. estimated tagging) |
+| Carrier receives wrong ship-to address retyped from a separate document | Single Source of Truth (validated address written once, read everywhere) |
+| Customer disputes delivery date; no record of what was committed | Database as Contract (immutable quote and delivery snapshots) |
+| Shipment notification missing tracking number, customer calls for status | Templates as Data Contracts (required-field enforcement before send) |
+| Internal teams working from different versions of the order record | Single Source of Truth (canonical record, role-based views) |
+
+Every data quality failure in a cross-party workflow can be traced to a breakdown in at least one of these five disciplines. The walkthrough above is a template: map your own RFQ cycle against it, stage by stage, and identify where your current process deviates. Each deviation is a gap that will eventually produce a failure.
+
+---
+
 ## Part V: External Party Data Management
 
 ### 14. Every External Data Handoff Is a Quality Event
