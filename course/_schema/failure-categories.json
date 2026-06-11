@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RFQ Course Failure Categories",
+  "description": "Controlled vocabulary for scenario_responses.selected_failure_category. Single source of truth for all failure classification dropdowns in the course application.",
+  "version": "1.0.0",
+  "last_updated": "2026-06-11",
+  "categories": [
+    {
+      "id": "no-single-source-of-truth",
+      "label": "No single source of truth",
+      "description": "Multiple conflicting versions of the same data exist across systems, teams, or documents. No authoritative record is designated.",
+      "example": "A customer receives a quote, a verbal price, and an invoice that don't match."
+    },
+    {
+      "id": "intake-minimum-viable-record-failure",
+      "label": "Intake / minimum viable complete record failure",
+      "description": "The data collected at entry is incomplete, ambiguous, or unvalidated — causing downstream misrouting, duplication, or processing failures.",
+      "example": "Free-text company names produce five variants of the same entity; the RFQ is misrouted."
+    },
+    {
+      "id": "dirty-state-visibility-missing",
+      "label": "Dirty-state visibility missing",
+      "description": "Estimated, unconfirmed, or in-progress data is presented as final — or no mechanism exists to distinguish confirmed from estimated state.",
+      "example": "An estimated lead time is treated as confirmed; the order ships late."
+    },
+    {
+      "id": "vague-commitments-declarations-instead-of-proof",
+      "label": "Vague commitments / declarations instead of proof",
+      "description": "Responses assert capability or status without specific dates, conditions, or verifiable evidence. Customer escalates due to unresolved ambiguity.",
+      "example": "A customer receives vague timelines in three consecutive replies."
+    },
+    {
+      "id": "vendor-data-translation-failure",
+      "label": "Vendor data / translation failure",
+      "description": "Vendor-supplied data uses different schemas, units, part numbers, or terminology that is not mapped to internal standards before use.",
+      "example": "A vendor's lead time convention differs from internal definitions; the mismatch is never resolved."
+    },
+    {
+      "id": "transparent-substitution-failure",
+      "label": "Transparent substitution failure",
+      "description": "A product, component, or data substitution is made without disclosure to the affected party, causing downstream errors.",
+      "example": "A customer installs the wrong product because a substitution was never disclosed."
+    },
+    {
+      "id": "naming-governance-confusion",
+      "label": "Naming / governance confusion",
+      "description": "Inconsistent naming, ambiguous status labels, or absent governance rules cause data to be misread, misreported, or technically indebted.",
+      "example": "A status field labeled 'complete' is applied to orders that never shipped."
+    }
+  ]
+}

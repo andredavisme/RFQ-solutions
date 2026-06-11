@@ -1,0 +1,203 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RFQ Course Manifest",
+  "description": "Machine-readable index of all course modules and lessons. Use this file to seed the rfq_course_app database. Lesson content lives at the path specified in each lesson object.",
+  "version": "1.0.0",
+  "last_updated": "2026-06-11",
+  "course": {
+    "slug": "rfq-communication-essentials",
+    "title": "RFQ Communication Essentials: Data Flow, Accuracy, and Business Trust",
+    "description": "Train business professionals to identify, diagnose, and fix the communication and data-flow failures that corrupt RFQ processes from intake to fulfillment."
+  },
+  "modules": [
+    {
+      "id": "module-01",
+      "slug": "seeing-failures",
+      "title": "Seeing the Failures",
+      "description": "Observation and acknowledgment before any solution. Learners classify failure scenarios using controlled vocabulary before the expert lens is revealed.",
+      "path": "course/modules/module-01-seeing-failures/README.md",
+      "lessons": [
+        {
+          "id": "lesson-1-1",
+          "slug": "three-prices-zero-truth",
+          "title": "Three Prices, Zero Truth",
+          "failure_category_id": "no-single-source-of-truth",
+          "path": "course/modules/module-01-seeing-failures/lesson-1-1.md"
+        },
+        {
+          "id": "lesson-1-2",
+          "slug": "vendor-lead-time-that-wasnt",
+          "title": "The Vendor Lead Time That Wasn't",
+          "failure_category_id": "dirty-state-visibility-missing",
+          "path": "course/modules/module-01-seeing-failures/lesson-1-2.md"
+        },
+        {
+          "id": "lesson-1-3",
+          "slug": "form-that-let-anything-through",
+          "title": "The Form That Let Anything Through",
+          "failure_category_id": "intake-minimum-viable-record-failure",
+          "path": "course/modules/module-01-seeing-failures/lesson-1-3.md"
+        },
+        {
+          "id": "lesson-1-4",
+          "slug": "well-look-into-it",
+          "title": "We'll Look Into It",
+          "failure_category_id": "vague-commitments-declarations-instead-of-proof",
+          "path": "course/modules/module-01-seeing-failures/lesson-1-4.md"
+        },
+        {
+          "id": "lesson-1-5",
+          "slug": "substitution-nobody-mentioned",
+          "title": "The Substitution Nobody Mentioned",
+          "failure_category_id": "transparent-substitution-failure",
+          "path": "course/modules/module-01-seeing-failures/lesson-1-5.md"
+        },
+        {
+          "id": "lesson-1-6",
+          "slug": "status-field-that-lied",
+          "title": "The Status Field That Lied",
+          "failure_category_id": "naming-governance-confusion",
+          "path": "course/modules/module-01-seeing-failures/lesson-1-6.md"
+        }
+      ]
+    },
+    {
+      "id": "module-02",
+      "slug": "intake",
+      "title": "Intake and Minimum Viable Complete Record",
+      "description": "Rebuild forms and intake flows so failures stop at the door.",
+      "path": "course/modules/module-02-intake/README.md",
+      "lessons": [
+        {
+          "id": "lesson-2-1",
+          "slug": "what-makes-a-record-complete",
+          "title": "What Makes a Record Complete",
+          "path": "course/modules/module-02-intake/lesson-2-1.md"
+        },
+        {
+          "id": "lesson-2-2",
+          "slug": "controlled-vocabulary-in-practice",
+          "title": "Controlled Vocabulary in Practice",
+          "path": "course/modules/module-02-intake/lesson-2-2.md"
+        },
+        {
+          "id": "lesson-2-3",
+          "slug": "normalization-before-storage",
+          "title": "Normalization Before Storage",
+          "path": "course/modules/module-02-intake/lesson-2-3.md"
+        },
+        {
+          "id": "lesson-2-4",
+          "slug": "dirty-state-as-feature",
+          "title": "Dirty State as a Feature, Not a Bug",
+          "path": "course/modules/module-02-intake/lesson-2-4.md"
+        }
+      ]
+    },
+    {
+      "id": "module-03",
+      "slug": "communication",
+      "title": "Communication and Commitment Discipline",
+      "description": "Voice, proof, and specific commitments.",
+      "path": "course/modules/module-03-communication/README.md",
+      "lessons": [
+        {
+          "id": "lesson-3-1",
+          "slug": "declarations-vs-proof",
+          "title": "Declarations vs. Proof",
+          "path": "course/modules/module-03-communication/lesson-3-1.md"
+        },
+        {
+          "id": "lesson-3-2",
+          "slug": "voice-discipline",
+          "title": "Voice Discipline",
+          "path": "course/modules/module-03-communication/lesson-3-2.md"
+        },
+        {
+          "id": "lesson-3-3",
+          "slug": "specific-commitments",
+          "title": "Specific Commitments",
+          "path": "course/modules/module-03-communication/lesson-3-3.md"
+        },
+        {
+          "id": "lesson-3-4",
+          "slug": "objection-as-data",
+          "title": "The Objection as Data",
+          "path": "course/modules/module-03-communication/lesson-3-4.md"
+        }
+      ]
+    },
+    {
+      "id": "module-04",
+      "slug": "vendor-flows",
+      "title": "Vendor and External Party Data Flows",
+      "description": "Translation layers, confirmation status, and routing.",
+      "path": "course/modules/module-04-vendor-flows/README.md",
+      "lessons": [
+        {
+          "id": "lesson-4-1",
+          "slug": "translation-layer",
+          "title": "The Translation Layer",
+          "path": "course/modules/module-04-vendor-flows/lesson-4-1.md"
+        },
+        {
+          "id": "lesson-4-2",
+          "slug": "confirmed-vs-estimated",
+          "title": "Confirmed vs. Estimated",
+          "path": "course/modules/module-04-vendor-flows/lesson-4-2.md"
+        },
+        {
+          "id": "lesson-4-3",
+          "slug": "vendor-vs-distributor",
+          "title": "Vendor vs. Distributor",
+          "path": "course/modules/module-04-vendor-flows/lesson-4-3.md"
+        },
+        {
+          "id": "lesson-4-4",
+          "slug": "authorization-driven-routing",
+          "title": "Authorization-Driven Routing",
+          "path": "course/modules/module-04-vendor-flows/lesson-4-4.md"
+        }
+      ]
+    },
+    {
+      "id": "module-05",
+      "slug": "governance",
+      "title": "Governance, Naming, and Data Architecture",
+      "description": "Design decisions that make everything else easier.",
+      "path": "course/modules/module-05-governance/README.md",
+      "lessons": [
+        {
+          "id": "lesson-5-1",
+          "slug": "names-are-documentation",
+          "title": "Names Are Documentation",
+          "path": "course/modules/module-05-governance/lesson-5-1.md"
+        },
+        {
+          "id": "lesson-5-2",
+          "slug": "governance-before-data",
+          "title": "Governance Before Data",
+          "path": "course/modules/module-05-governance/lesson-5-2.md"
+        },
+        {
+          "id": "lesson-5-3",
+          "slug": "migration-as-append-only-history",
+          "title": "Migration as Append-Only History",
+          "path": "course/modules/module-05-governance/lesson-5-3.md"
+        },
+        {
+          "id": "lesson-5-4",
+          "slug": "database-as-contract",
+          "title": "The Database as Contract",
+          "path": "course/modules/module-05-governance/lesson-5-4.md"
+        },
+        {
+          "id": "lesson-5-5",
+          "slug": "ai-as-collaboration-not-delegation",
+          "title": "AI as Collaboration, Not Delegation",
+          "path": "course/modules/module-05-governance/lesson-5-5.md"
+        }
+      ]
+    }
+  ]
+}
