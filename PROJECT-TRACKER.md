@@ -29,13 +29,46 @@
 
 ---
 
-## 🏁 All Source Repos Complete — Next Step: Build MASTER-GUIDE.md
+## 📚 Course: RFQ Data Integrity (5 Modules)
 
-All 12 source repositories have been processed. The next and final step is to synthesize all 12 guide files into a single `MASTER-GUIDE.md` that serves as the standalone, in-depth business knowledge guide.
+A standalone, scenario-driven course built from the principles extracted across all 12 source repos. Each module has a README and numbered lesson files.
 
-To begin the synthesis session, paste the following into a new conversation:
+| Module | Title | Status | Lessons | Key Concepts |
+|--------|-------|--------|---------|---------------|
+| 01 | Seeing Failures | ✅ Complete | 6 (1.1–1.6) | Five failure taxonomy: missing data, dirty state, broken chain of custody, unauthorized substitution, communication failure |
+| 02 | Intake Architecture | ✅ Complete | 4 (2.1–2.4) | Minimum viable complete record, three-property framework (authoritative/required/validated), dirty-state lifecycle |
+| 03 | Communication Discipline | ✅ Complete | 4 (3.1–3.4) | Declaration vs. proof, voice discipline, specific commitment anatomy, objection as structured data |
+| 04 | Vendor and External Party Data Flows | ✅ Complete | 4 (4.1–4.4) | Translation layer, confirmed vs. estimated certainty spectrum, vendor vs. distributor reliability profiles, authorization-driven routing |
+| 05 | Governance, Naming, and Data Architecture | ✅ Complete | 5 (5.1–5.5) | Naming conventions, append-only migration, database as contract, AI three-gate review, capstone |
 
-> **"I'm continuing the RFQ-solutions project. The repo is at https://github.com/andredavisme/RFQ-solutions. All 12 source repos are complete. Please read all 12 guide files in the guide/ directory and synthesize them into MASTER-GUIDE.md — a standalone, in-depth business guide for improving data flow, preservation, accessibility, and accuracy across lines of business and with external parties (customers, vendors, transportation logistics)."**
+**Course total: 23 lessons across 5 modules. All lesson files committed.**
+
+---
+
+## ⏳ Remaining Work
+
+| Item | Status | Depends On | Notes |
+|------|--------|------------|-------|
+| `rfq_course_app` schema migrations | ⬜ Not Started | All modules complete ✅ | All 5 modules now complete — ready to begin when session resumes |
+| `MASTER-GUIDE.md` synthesis | ⬜ Not Started | All guide files complete ✅ | Synthesize all 12 `guide/` files into a single standalone business guide |
+
+---
+
+## 🏁 Next Steps
+
+### Next: Schema Migrations for `rfq_course_app`
+
+All 5 course modules are complete. The next step is to write the database migrations for the `rfq_course_app` — the application that hosts the course, records lesson reflections, and stores capstone submissions.
+
+To begin the schema migration session, paste the following into a new conversation:
+
+> **"I'm continuing the RFQ-solutions project. The repo is at https://github.com/andredavisme/RFQ-solutions. All 5 course modules are complete. Please check PROJECT-TRACKER.md and then build the rfq_course_app schema migrations."**
+
+### After That: MASTER-GUIDE.md Synthesis
+
+Once migrations are complete, synthesize all 12 guide files into `MASTER-GUIDE.md`:
+
+> **"I'm continuing the RFQ-solutions project. The repo is at https://github.com/andredavisme/RFQ-solutions. Schema migrations are complete. Please read all 12 guide files in the guide/ directory and synthesize them into MASTER-GUIDE.md — a standalone, in-depth business guide for improving data flow, preservation, accessibility, and accuracy across lines of business and with external parties (customers, vendors, transportation logistics)."**
 
 ---
 
@@ -43,8 +76,8 @@ To begin the synthesis session, paste the following into a new conversation:
 
 ```
 RFQ-solutions/
-├── PROJECT-TRACKER.md        ← This file
-├── README.md                 ← Project overview
+├── PROJECT-TRACKER.md              ← This file
+├── README.md                       ← Project overview
 ├── guide/
 │   ├── 01-finfolio.md
 │   ├── 02-underdog-war-room.md
@@ -58,7 +91,18 @@ RFQ-solutions/
 │   ├── 10-internationally-tribal.md
 │   ├── 11-fork-in-the-road.md
 │   └── 12-alexandria.md
-└── MASTER-GUIDE.md           ← Final synthesized guide (build next)
+├── course/
+│   ├── README.md
+│   ├── _schema/
+│   │   ├── failure-categories.json
+│   │   └── course-manifest.json
+│   └── modules/
+│       ├── module-01-seeing-failures/   (README + lessons 1.1–1.6)
+│       ├── module-02-intake/            (README + lessons 2.1–2.4)
+│       ├── module-03-communication/     (README + lessons 3.1–3.4)
+│       ├── module-04-vendor-flows/      (README + lessons 4.1–4.4)
+│       └── module-05-governance/        (README + lessons 5.1–5.5)
+└── MASTER-GUIDE.md                 ← Final synthesized guide (build after migrations)
 ```
 
 ---
@@ -70,4 +114,6 @@ RFQ-solutions/
 | 2026-06-10 | Project initialized. Repo created. Tracking document added. Ready to begin with repo #1: finfolio. |
 | 2026-06-10 | Completed repos #1–10. Wrote guide files 01 through 10 covering: data ownership & round-trip fidelity (finfolio); competitive intelligence as data (underdog-war-room); RFQ data architecture & transparent matching (parts-spec-matcher); technical debt as governance problem (tech-debt-explorer); expectation-deviation-adaptation framework (data-solutions-for-me); informed decision-making & negotiation under time pressure (westbrook-datacenter-informed); pipeline zone architecture & data integrity contracts (data-cleaning-guide); workforce pipeline ROI & PAE model (field-tech-blueprint); scenario-based training design & post-mortem discipline (sales-scenario-training-portal); AI as creative collaborator, direction vs. execution, human authorship as asset (internationally-tribal). Next: repo #11 fork-in-the-road. |
 | 2026-06-11 | Completed repo #11 fork-in-the-road. Wrote guide/11-fork-in-the-road.md covering: story-first positioning as evidence inventory, segment-specific data design, constraints as architecture inputs, pay-it-forward data integrity model, request operations as data asset, outreach templates as data contracts, actionable-only metrics, lean stack as risk management. One repo remaining: #12 alexandria. |
-| 2026-06-11 | Completed repo #12 alexandria. Wrote guide/12-alexandria.md covering: database as ecosystem single source of truth, append-only migration history, RLS by default (security as architecture), schema separation as domain boundary enforcement, contribution workflow as change control process, secrets in Vault never in code, governance before data, foundation discipline as ecosystem maturity signal. ALL 12 SOURCE REPOS COMPLETE. Next step: synthesize MASTER-GUIDE.md. |
+| 2026-06-11 | Completed repo #12 alexandria. Wrote guide/12-alexandria.md covering: database as ecosystem single source of truth, append-only migration history, RLS by default (security as architecture), schema separation as domain boundary enforcement, contribution workflow as change control process, secrets in Vault never in code, governance before data, foundation discipline as ecosystem maturity signal. ALL 12 SOURCE REPOS COMPLETE. |
+| 2026-06-11 | Built course scaffold: course/README.md, _schema/failure-categories.json, _schema/course-manifest.json. Wrote all 5 module READMEs (02–05 in one session, 01 previously). |
+| 2026-06-11 | Completed all course lesson files: Module 01 (6 lessons), Module 02 (4 lessons), Module 03 (4 lessons), Module 04 (4 lessons), Module 05 (5 lessons). 23 lessons total across 5 modules. COURSE COMPLETE. Schema migrations deferred until all modules confirmed complete. Next: rfq_course_app schema migrations, then MASTER-GUIDE.md synthesis. |
