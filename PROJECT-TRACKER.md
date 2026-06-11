@@ -4,7 +4,7 @@
 
 **Space Context:** Communication Essential for Requests for Service
 
-**Last Updated:** 2026-06-10
+**Last Updated:** 2026-06-11
 
 ---
 
@@ -22,7 +22,7 @@
 | 8 | [field-tech-blueprint](https://github.com/andredavisme/field-tech-blueprint) | ✅ Complete | `guide/08-field-tech-blueprint.md` | Talent as infrastructure, PAE model, coachability over credentials, LOTO calm assertion, manual before instinct, root cause over symptom, documentation over verbal, PAE scenario stress-testing |
 | 9 | [sales-scenario-training-portal](https://github.com/andredavisme/sales-scenario-training-portal) | ✅ Complete | `guide/09-sales-scenario-training-portal.md` | Dual-deliverable design, schema as minimum viable record, explicit access control vs. friction, voice discipline, stateless design as feature, migration convention, post-mortem + rule change, non-negotiable constraints |
 | 10 | [internationally-tribal](https://github.com/andredavisme/internationally-tribal) | ✅ Complete | `guide/10-internationally-tribal.md` | AI as hammer not artist, creative brief before prompt, direction vs. execution model, inventory of human authorship, 5-phase build, judgment as asset to protect |
-| 11 | [fork-in-the-road](https://github.com/andredavisme/fork-in-the-road) | ⬜ Not Started | — | — |
+| 11 | [fork-in-the-road](https://github.com/andredavisme/fork-in-the-road) | ✅ Complete | `guide/11-fork-in-the-road.md` | Story-first positioning as evidence inventory, segment-specific data design, constraints as architecture inputs, pay-it-forward data integrity, request operations as data asset, templates as data contracts, actionable-only metrics, lean stack as risk management |
 | 12 | [alexandria](https://github.com/andredavisme/alexandria) | ⬜ Not Started | — | — |
 
 **Status Key:** ⬜ Not Started · 🔄 In Progress · ✅ Complete
@@ -67,3 +67,4 @@ Paste the following into a new conversation to pick up exactly where you left of
 |------|-----------------|
 | 2026-06-10 | Project initialized. Repo created. Tracking document added. Ready to begin with repo #1: finfolio. |
 | 2026-06-10 | Completed repos #1–10. Wrote guide files 01 through 10 covering: data ownership & round-trip fidelity (finfolio); competitive intelligence as data (underdog-war-room); RFQ data architecture & transparent matching (parts-spec-matcher); technical debt as governance problem (tech-debt-explorer); expectation-deviation-adaptation framework (data-solutions-for-me); informed decision-making & negotiation under time pressure (westbrook-datacenter-informed); pipeline zone architecture & data integrity contracts (data-cleaning-guide); workforce pipeline ROI & PAE model (field-tech-blueprint); scenario-based training design & post-mortem discipline (sales-scenario-training-portal); AI as creative collaborator, direction vs. execution, human authorship as asset (internationally-tribal). Next: repo #11 fork-in-the-road. |
+| 2026-06-11 | Completed repo #11 fork-in-the-road. Wrote guide/11-fork-in-the-road.md covering: story-first positioning as evidence inventory, segment-specific data design, constraints as architecture inputs, pay-it-forward data integrity model, request operations as data asset, outreach templates as data contracts, actionable-only metrics, lean stack as risk management. One repo remaining: #12 alexandria. |
