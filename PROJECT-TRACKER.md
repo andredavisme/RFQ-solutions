@@ -49,24 +49,18 @@ A standalone, scenario-driven course built from the principles extracted across 
 
 | Item | Status | Depends On | Notes |
 |------|--------|------------|-------|
-| `rfq_course_app` schema migrations | ⬜ Not Started | All modules complete ✅ | All 5 modules now complete — ready to begin when session resumes |
+| `rfq_course_app` schema migrations | ✅ Complete | All modules complete ✅ | 6 migration files committed to `migrations/` |
 | `MASTER-GUIDE.md` synthesis | ⬜ Not Started | All guide files complete ✅ | Synthesize all 12 `guide/` files into a single standalone business guide |
 
 ---
 
 ## 🏁 Next Steps
 
-### Next: Schema Migrations for `rfq_course_app`
+### Next: MASTER-GUIDE.md Synthesis
 
-All 5 course modules are complete. The next step is to write the database migrations for the `rfq_course_app` — the application that hosts the course, records lesson reflections, and stores capstone submissions.
+Schema migrations are complete. The final step is to synthesize all 12 guide files into `MASTER-GUIDE.md`.
 
-To begin the schema migration session, paste the following into a new conversation:
-
-> **"I'm continuing the RFQ-solutions project. The repo is at https://github.com/andredavisme/RFQ-solutions. All 5 course modules are complete. Please check PROJECT-TRACKER.md and then build the rfq_course_app schema migrations."**
-
-### After That: MASTER-GUIDE.md Synthesis
-
-Once migrations are complete, synthesize all 12 guide files into `MASTER-GUIDE.md`:
+To begin the synthesis session, paste the following into a new conversation:
 
 > **"I'm continuing the RFQ-solutions project. The repo is at https://github.com/andredavisme/RFQ-solutions. Schema migrations are complete. Please read all 12 guide files in the guide/ directory and synthesize them into MASTER-GUIDE.md — a standalone, in-depth business guide for improving data flow, preservation, accessibility, and accuracy across lines of business and with external parties (customers, vendors, transportation logistics)."**
 
@@ -102,7 +96,14 @@ RFQ-solutions/
 │       ├── module-03-communication/     (README + lessons 3.1–3.4)
 │       ├── module-04-vendor-flows/      (README + lessons 4.1–4.4)
 │       └── module-05-governance/        (README + lessons 5.1–5.5)
-└── MASTER-GUIDE.md                 ← Final synthesized guide (build after migrations)
+├── migrations/
+│   ├── 001_create_course_schema.sql
+│   ├── 002_create_user_enrollment.sql
+│   ├── 003_create_progress_tracking.sql
+│   ├── 004_create_capstone_submissions.sql
+│   ├── 005_seed_course_data.sql
+│   └── 006_enable_rls.sql
+└── MASTER-GUIDE.md                 ← Final synthesized guide (next step)
 ```
 
 ---
@@ -116,4 +117,5 @@ RFQ-solutions/
 | 2026-06-11 | Completed repo #11 fork-in-the-road. Wrote guide/11-fork-in-the-road.md covering: story-first positioning as evidence inventory, segment-specific data design, constraints as architecture inputs, pay-it-forward data integrity model, request operations as data asset, outreach templates as data contracts, actionable-only metrics, lean stack as risk management. One repo remaining: #12 alexandria. |
 | 2026-06-11 | Completed repo #12 alexandria. Wrote guide/12-alexandria.md covering: database as ecosystem single source of truth, append-only migration history, RLS by default (security as architecture), schema separation as domain boundary enforcement, contribution workflow as change control process, secrets in Vault never in code, governance before data, foundation discipline as ecosystem maturity signal. ALL 12 SOURCE REPOS COMPLETE. |
 | 2026-06-11 | Built course scaffold: course/README.md, _schema/failure-categories.json, _schema/course-manifest.json. Wrote all 5 module READMEs (02–05 in one session, 01 previously). |
-| 2026-06-11 | Completed all course lesson files: Module 01 (6 lessons), Module 02 (4 lessons), Module 03 (4 lessons), Module 04 (4 lessons), Module 05 (5 lessons). 23 lessons total across 5 modules. COURSE COMPLETE. Schema migrations deferred until all modules confirmed complete. Next: rfq_course_app schema migrations, then MASTER-GUIDE.md synthesis. |
+| 2026-06-11 | Completed all course lesson files: Module 01 (6 lessons), Module 02 (4 lessons), Module 03 (4 lessons), Module 04 (4 lessons), Module 05 (5 lessons). 23 lessons total across 5 modules. COURSE COMPLETE. |
+| 2026-06-11 | Wrote and committed 6 schema migrations for rfq_course_app to migrations/. Schema covers: courses/modules/lessons/failure_categories (001), user profiles + enrollment + auto-create trigger (002), lesson_progress with forward-only enforcement + module_progress_summary view (003), capstone_submissions with review workflow (004), seed data from course-manifest.json for all 23 lessons (005), RLS policies on all 8 tables with is_admin() helper (006). ONE ITEM REMAINING: MASTER-GUIDE.md synthesis. |
